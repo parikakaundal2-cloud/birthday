@@ -178,6 +178,13 @@ const messages = [
   "You are actually so dumb 😭",
   "I miss you idiot",
   "Always rooting for you",
+  "BREAD" ,
+  "I HATE YOY TBH" ,
+  "LOVING YOU IS PAINFUL" ,
+  "ALWAYS ROOTING FOR YOU" ,
+  "I MISS YOU" ,
+  "THAPPAD PADEGA KISSI DIN" ,
+  "JAAN HAI TU MERI" ,
   "You’re stuck with me forever 😌"
 ];
 
@@ -200,11 +207,29 @@ function back() {
   document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
   document.getElementById("home").classList.remove("hidden");
 }
+let shuffled = [];
+let index = 0;
+
+function shuffleArray(array) {
+  let newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
 
 function showMessage() {
-  const random = Math.floor(Math.random() * messages.length);
-  document.getElementById("message").innerText = messages[random];
+  if (index === 0) {
+    shuffled = shuffleArray([...messages]);
+  }
+
+ document.getElementById("message").innerText = shuffled[index];
+
+index = (index + 1) % shuffled.length;
 }
+
+
 
 function confetti() {
   const c = document.createElement("div");

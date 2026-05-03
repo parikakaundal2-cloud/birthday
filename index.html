@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday Shriya 💙</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec, #fcbad3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 350px;
+    }
+
+    h1 {
+      color: #ff4b5c;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 25px;
+      background: #ff4b5c;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .photo {
+      background: #fff;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transform: rotate(-2deg);
+    }
+
+    .photo:nth-child(even) {
+      transform: rotate(2deg);
+    }
+
+    .photo img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .caption {
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      font-size: 18px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div class="card" id="lock">
+  <h1>Enter Password 💙</h1>
+  <input type="password" id="pass"><br><br>
+  <button onclick="unlock()">Unlock</button>
+</div>
+
+<!-- HOME -->
+<div class="card hidden" id="home">
+  <h1>HAPPY BIRTHDAY SHRIYA 🎉</h1>
+  <p>Open slowly… I made this for you 💙</p>
+
+  <button onclick="openSection('messages')">💌 Messages</button>
+  <button onclick="openSection('photos')">📸 Memories</button>
+  <button onclick="openSection('letter')">🎂 Letter</button>
+</div>
+
+<!-- MESSAGES -->
+<div class="card hidden" id="messages">
+  <h1>💌 Messages</h1>
+  <button onclick="showMessage()">Tap 😄</button>
+  <p id="message"></p>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- PHOTOS -->
+<div class="card hidden" id="photos">
+  <h1>📸 Our Memories</h1>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <img src="./1.jpeg">
+      <div class="caption">this day >>> 😭</div>
+    </div>
+
+    <div class="photo">
+      <img src="./2.jpeg">
+      <div class="caption">peak chaos</div>
+    </div>
+
+    <div class="photo">
+      <img src="./3.jpeg">
+      <div class="caption">miss this so much 💙</div>
+    </div>
+
+    <div class="photo">
+      <img src="./4.jpeg">
+      <div class="caption">we were insane here 😭</div>
+    </div>
+
+    <div class="photo">
+      <img src="./5.jpeg">
+      <div class="caption">fav memory 💙</div>
+    </div>
+
+  </div>
+
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- LETTER -->
+<div class="card hidden" id="letter">
+  <h1>🎂 For You</h1>
+
+  <p>
+    Happy Birthday Cheeku 💙<br><br>
+    No matter how far we are, you're still one of the closest people to my heart.<br><br>
+    I have 100 reasons to hate you currently but just one stupid reason is enough to love you insanely<br><br>
+    I'm always here for you. Always.<br><br>
+    I love you 💙
+  </p>
+
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<script>
+const messages = [
+  "You’re my favorite human 💙",
+  "You are actually so dumb 😭",
+  "I miss you idiot",
+  "Always rooting for you",
+  "You’re stuck with me forever 😌"
+];
+
+function unlock() {
+  const p = document.getElementById("pass").value;
+  if (p === "1234") {
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("home").classList.remove("hidden");
+  } else {
+    alert("Wrong password 😝");
+  }
+}
+
+function openSection(id) {
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function back() {
+  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
+  document.getElementById("home").classList.remove("hidden");
+}
+
+function showMessage() {
+  const random = Math.floor(Math.random() * messages.length);
+  document.getElementById("message").innerText = messages[random];
+}
+
+function confetti() {
+  const c = document.createElement("div");
+  c.innerText = "🎉";
+  c.classList.add("confetti");
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  document.body.appendChild(c);
+  setTimeout(() => c.remove(), 5000);
+}
+
+setInterval(confetti, 300);
+</script>
+
+</body>
+</html>

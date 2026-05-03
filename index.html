@@ -220,13 +220,18 @@ function shuffleArray(array) {
 }
 
 function showMessage() {
-  if (index === 0) {
+  if (shuffled.length === 0) {
     shuffled = shuffleArray([...messages]);
   }
 
- document.getElementById("message").innerText = shuffled[index];
+  document.getElementById("message").innerText = shuffled[index];
 
-index = (index + 1) % shuffled.length;
+  index++;
+
+  if (index >= shuffled.length) {
+    shuffled = shuffleArray([...messages]); // reshuffle again
+    index = 0;
+  }
 }
 
 
